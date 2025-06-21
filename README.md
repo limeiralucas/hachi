@@ -26,16 +26,16 @@ cargo test instructions_tests
 ### Standard CHIP-8 Instructions
 
 #### System & Control Flow
-- [x] **00E0** - CLS (Clear Display) - `clear_display()`
-- [x] **00EE** - RET (Return from subroutine) - `ret()`
+- [x] **00E0** - CLS (Clear Display)
+- [x] **00EE** - RET (Return from subroutine)
 - [ ] **0nnn** - SYS addr (System call - usually ignored)
-- [x] **1nnn** - JP addr (Jump to address) - `jump()`
-- [x] **2nnn** - CALL addr (Call subroutine) - `call()`
+- [x] **1nnn** - JP addr (Jump to address)
+- [x] **2nnn** - CALL addr (Call subroutine)
 
 #### Conditional Instructions
-- [x] **3xkk** - SE Vx, byte (Skip if Vx == byte) - `skip_equal_vx_byte()`
-- [x] **4xkk** - SNE Vx, byte (Skip if Vx != byte) - `skip_not_equal_vx_byte()`
-- [x] **5xy0** - SE Vx, Vy (Skip if Vx == Vy) - `skip_equal_vx_vy()`
+- [x] **3xkk** - SE Vx, byte (Skip if Vx == byte)
+- [x] **4xkk** - SNE Vx, byte (Skip if Vx != byte)
+- [x] **5xy0** - SE Vx, Vy (Skip if Vx == Vy)
 - [ ] **9xy0** - SNE Vx, Vy (Skip if Vx != Vy)
 
 #### Load Instructions
@@ -56,7 +56,7 @@ cargo test instructions_tests
 
 #### Jump & Random
 - [ ] **Bnnn** - JP V0, addr (Jump to addr + V0)
-- [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte) - `rand_gen()` ⚠️ *Needs integration*
+- [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte) ⚠️ *Needs integration*
 
 #### Graphics
 - [ ] **Dxyn** - DRW Vx, Vy, nibble (Draw sprite)
