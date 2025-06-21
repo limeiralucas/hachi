@@ -1,6 +1,10 @@
 # Hachi - CHIP-8 Emulator
 
-A CHIP-8 emulator written in Rust.
+<div align="center">
+  <img src="images/logo.svg" alt="Hachi CHIP-8 Emulator Logo" width="200"/>
+</div>
+
+A CHIP-8 emulator written in Rust (for learning purposes 😁).
 
 ## About CHIP-8
 
