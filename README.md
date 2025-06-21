@@ -78,6 +78,7 @@ cargo test instructions_tests
 
 ## References
 
+- [Austin Morlan - Building a CHIP-8 Emulator [C++]](https://austinmorlan.com/posts/chip8_emulator)
 - [Cowgod's CHIP-8 Technical Reference](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM)
 - [CHIP-8 Wikipedia](https://en.wikipedia.org/wiki/CHIP-8)
 
