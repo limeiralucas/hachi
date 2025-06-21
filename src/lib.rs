@@ -1,4 +1,4 @@
-use std::{io::{Error, ErrorKind, Read}};
+use std::{io::{Error, ErrorKind, Read}, ops::Add};
 use log::info;
 use rand::Rng;
 
@@ -142,5 +142,12 @@ impl Chip8 {
         let byte = (self.opcode & 0x00FFu16) as u8;
 
         self.registers[vx as usize] = byte;
+    }
+
+    pub fn add_vx_byte(&mut self) {
+        let vx = (self.opcode & 0x0F00) >> 8;
+        let byte = (self.opcode & 0x00FFu16) as u8;
+
+        self.registers[vx as usize] = self.registers[vx as usize].wrapping_add(byte);
     }
 } 

@@ -44,7 +44,7 @@ cargo test instructions_tests
 - [ ] **Annn** - LD I, addr (Set I = addr)
 
 #### Arithmetic & Logic
-- [ ] **7xkk** - ADD Vx, byte (Add byte to Vx)
+- [x] **7xkk** - ADD Vx, byte (Add byte to Vx)
 - [ ] **8xy1** - OR Vx, Vy (Vx = Vx OR Vy)
 - [ ] **8xy2** - AND Vx, Vy (Vx = Vx AND Vy)
 - [ ] **8xy3** - XOR Vx, Vy (Vx = Vx XOR Vy)
