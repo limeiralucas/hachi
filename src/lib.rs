@@ -136,4 +136,11 @@ impl Chip8 {
             self.pc += 2;
         }
     }
+
+    pub fn load_vx_byte(&mut self) {
+        let vx = (self.opcode & 0x0F00) >> 8;
+        let byte = (self.opcode & 0x00FFu16) as u8;
+
+        self.registers[vx as usize] = byte;
+    }
 } 

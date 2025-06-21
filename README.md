@@ -39,7 +39,7 @@ cargo test instructions_tests
 - [ ] **9xy0** - SNE Vx, Vy (Skip if Vx != Vy)
 
 #### Load Instructions
-- [ ] **6xkk** - LD Vx, byte (Set Vx = byte)
+- [x] **6xkk** - LD Vx, byte (Set Vx = byte)
 - [ ] **8xy0** - LD Vx, Vy (Set Vx = Vy)
 - [ ] **Annn** - LD I, addr (Set I = addr)
 

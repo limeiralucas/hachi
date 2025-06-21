@@ -139,3 +139,14 @@ fn test_skip_equal_vx_vy_should_not_skip() {
 
     assert_eq!(chip8.pc, 0x5000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x5000, chip8.pc);
 }
+
+#[test]
+fn test_load_vx_byte() {
+    let mut chip8 = Chip8::default();
+
+    chip8.opcode = 0x6A55;
+
+    chip8.load_vx_byte();
+
+    assert_eq!(chip8.registers[0xA], 0x55);
+}
