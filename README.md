@@ -33,9 +33,9 @@ cargo test instructions_tests
 - [x] **2nnn** - CALL addr (Call subroutine) - `call()`
 
 #### Conditional Instructions
-- [x] **3xkk** - SE Vx, byte (Skip if Vx == byte) - `skip_equal_vx_vy()`
-- [x] **4xkk** - SNE Vx, byte (Skip if Vx != byte) - `skip_not_equal_vx_vy()`
-- [ ] **5xy0** - SE Vx, Vy (Skip if Vx == Vy)
+- [x] **3xkk** - SE Vx, byte (Skip if Vx == byte) - `skip_equal_vx_byte()`
+- [x] **4xkk** - SNE Vx, byte (Skip if Vx != byte) - `skip_not_equal_vx_byte()`
+- [x] **5xy0** - SE Vx, Vy (Skip if Vx == Vy) - `skip_equal_vx_vy()`
 - [ ] **9xy0** - SNE Vx, Vy (Skip if Vx != Vy)
 
 #### Load Instructions

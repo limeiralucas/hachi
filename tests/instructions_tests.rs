@@ -61,7 +61,7 @@ fn test_call() {
 }
 
 #[test]
-fn test_skip_equal_vx_should_skip() {
+fn test_skip_equal_vx_byte_should_skip() {
     let mut chip8 = Chip8::default();
 
     chip8.pc = 0x3000;
@@ -71,43 +71,71 @@ fn test_skip_equal_vx_should_skip() {
     chip8.skip_equal_vx_byte();
 
     assert_eq!(chip8.pc, 0x3002, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3002, chip8.pc);
+}
+
+#[test]
+fn test_skip_equal_vx_byte_should_not_skip() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x3000;
+    chip8.registers[0] = 0x55;
+    chip8.opcode = 0x3056;
+
+    chip8.skip_equal_vx_byte();
+
+    assert_eq!(chip8.pc, 0x3000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3000, chip8.pc);
+}
+
+#[test]
+fn test_skip_not_equal_vx_byte_should_skip() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x4000;
+    chip8.registers[0] = 0x55;
+    chip8.opcode = 0x4056;
+
+    chip8.skip_not_equal_vx_byte();
+
+    assert_eq!(chip8.pc, 0x4002, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x4002, chip8.pc);
+}
+
+#[test]
+fn test_skip_not_equal_vx_byte_should_not_skip() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x4000;
+    chip8.registers[0] = 0x55;
+    chip8.opcode = 0x4055;
+
+    chip8.skip_not_equal_vx_byte();
+
+    assert_eq!(chip8.pc, 0x4000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x4000, chip8.pc);
+}
+
+#[test]
+fn test_skip_equal_vx_vy_should_skip() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x5000;
+    chip8.registers[0] = 0x55;
+    chip8.registers[1] = 0x55;
+    chip8.opcode = 0x5010;
+
+    chip8.skip_equal_vx_vy();
+
+    assert_eq!(chip8.pc, 0x5002, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x5002, chip8.pc);
 }
 
 #[test]
 fn test_skip_equal_vx_vy_should_not_skip() {
     let mut chip8 = Chip8::default();
 
-    chip8.pc = 0x3000;
+    chip8.pc = 0x5000;
     chip8.registers[0] = 0x55;
-    chip8.opcode = 0x3056;
+    chip8.registers[1] = 0x56;
+    chip8.opcode = 0x5010;
 
-    chip8.skip_equal_vx_byte();
+    chip8.skip_equal_vx_vy();
 
-    assert_eq!(chip8.pc, 0x3000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3000, chip8.pc);
-}
-
-#[test]
-fn test_skip_not_equal_vx_vy_should_skip() {
-    let mut chip8 = Chip8::default();
-
-    chip8.pc = 0x3000;
-    chip8.registers[0] = 0x55;
-    chip8.opcode = 0x3056;
-
-    chip8.skip_not_equal_vx_byte();
-
-    assert_eq!(chip8.pc, 0x3002, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3002, chip8.pc);
-}
-
-#[test]
-fn test_skip_not_equal_vx_vy_should_not_skip() {
-    let mut chip8 = Chip8::default();
-
-    chip8.pc = 0x3000;
-    chip8.registers[0] = 0x55;
-    chip8.opcode = 0x3055;
-
-    chip8.skip_not_equal_vx_byte();
-
-    assert_eq!(chip8.pc, 0x3000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3000, chip8.pc);
+    assert_eq!(chip8.pc, 0x5000, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x5000, chip8.pc);
 }
