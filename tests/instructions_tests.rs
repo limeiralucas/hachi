@@ -1,0 +1,61 @@
+use hachi::Chip8;
+
+#[test]
+fn test_clear_display() {
+    let mut chip8 = Chip8::default();
+    
+    chip8.video.fill(true);
+    
+    let initial_pc = chip8.pc;
+    let initial_sp = chip8.sp;
+    let initial_memory = chip8.memory;
+    
+    chip8.clear_display();
+    
+    let expected_display = [false; 64 * 32];
+    assert_eq!(chip8.video, expected_display, "Display should be completely cleared");
+    
+    // Ensure other state remains unchanged
+    assert_eq!(chip8.pc, initial_pc, "Program counter should not change");
+    assert_eq!(chip8.sp, initial_sp, "Stack pointer should not change");
+    assert_eq!(chip8.memory, initial_memory, "Memory should not change");
+}
+
+#[test]
+fn test_ret() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x100;
+    chip8.sp = 1;
+    chip8.stack[0] = 0x200;
+
+    chip8.ret();
+
+    assert_eq!(chip8.pc, 0x200);
+    assert_eq!(chip8.sp, 0);
+}
+
+#[test]
+fn test_jump() {
+    let mut chip8 = Chip8::default();
+
+    chip8.opcode = 0x1A59;
+
+    chip8.jump();
+
+    assert_eq!(chip8.pc, 0x0A59);
+}
+
+#[test]
+fn test_call() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x500;
+    chip8.opcode = 0x2A59;
+
+    chip8.call();
+
+    assert_eq!(chip8.pc, 0x0A59);
+    assert_eq!(chip8.sp, 1);
+    assert_eq!(chip8.stack[0], 0x500);
+}

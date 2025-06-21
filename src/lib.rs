@@ -1,5 +1,6 @@
 use std::{io::{Error, ErrorKind, Read}};
 use log::info;
+use rand::Rng;
 
 const FONTSET: [u8; 80] = [
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -105,5 +106,30 @@ impl Chip8 {
         }
         info!("ROM loaded successfully");
         Ok(())
+    }
+
+    fn rand_gen() -> u8 {
+        let mut rng = rand::rng();
+
+        return rng.random_range(0..=255);
+    }
+
+    pub fn clear_display(&mut self) {
+        self.video = [false; 64 * 32];
+    }
+
+    pub fn ret(&mut self) {
+        self.sp -= 1;
+        self.pc = self.stack[self.sp as usize];
+    }
+
+    pub fn jump(&mut self) {
+        self.pc = self.opcode & 0x0FFFu16;
+    }
+
+    pub fn call(&mut self) {
+        self.stack[self.sp as usize] = self.pc;
+        self.sp += 1;
+        self.pc = self.opcode & 0x0FFFu16;
     }
 } 
