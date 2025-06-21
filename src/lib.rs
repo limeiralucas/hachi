@@ -118,4 +118,13 @@ impl Chip8 {
             self.pc += 2;
         }
     }
+
+    pub fn skip_not_equal_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00) >> 8;
+        let byte = (self.opcode & 0x00FFu16) as u8;
+
+        if self.registers[vx as usize] != byte {
+            self.pc += 2;
+        }
+    }
 } 
