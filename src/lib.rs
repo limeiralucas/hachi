@@ -21,50 +21,27 @@ const FONTSET: [u8; 80] = [
 	0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 ];
 
-pub struct Registers {
-    pub v0: u8,
-    pub v1: u8,
-    pub v2: u8,
-    pub v3: u8,
-    pub v4: u8,
-    pub v5: u8,
-    pub v6: u8,
-    pub v7: u8,
-    pub v8: u8,
-    pub v9: u8,
-    pub va: u8,
-    pub vb: u8,
-    pub vc: u8,
-    pub vd: u8,
-    pub ve: u8,
-    pub vf: u8,
-}
-
-impl Default for Registers {
-    fn default() -> Self {
-        Self {
-            v0: 0,
-            v1: 0,
-            v2: 0,
-            v3: 0,
-            v4: 0,
-            v5: 0,
-            v6: 0,
-            v7: 0,
-            v8: 0,
-            v9: 0,
-            va: 0,
-            vb: 0,
-            vc: 0,
-            vd: 0,
-            ve: 0,
-            vf: 0,
-        }
-    }
+enum Register {
+    V0 = 0x0,
+    V1 = 0x1,
+    V2 = 0x2,
+    V3 = 0x3,
+    V4 = 0x4,
+    V5 = 0x5,
+    V6 = 0x6,
+    V7 = 0x7,
+    V8 = 0x8,
+    V9 = 0x9,
+    VA = 0xA,
+    VB = 0xB,
+    VC = 0xC,
+    VD = 0xD,
+    VE = 0xE,
+    VF = 0xF,
 }
 
 pub struct Chip8 {
-    pub registers: Registers,
+    pub registers: [u8; 16],
     pub memory: [u8; 4096],
     pub index: u16,
     pub pc: u16,
@@ -81,7 +58,7 @@ impl Default for Chip8 {
         memory[0x50..0x50 + FONTSET.len()].copy_from_slice(&FONTSET);
 
         Self {
-            registers: Registers::default(),
+            registers: [0; 16],
             memory: memory,
             index: 0,
             pc: 0x200,
@@ -131,5 +108,14 @@ impl Chip8 {
         self.stack[self.sp as usize] = self.pc;
         self.sp += 1;
         self.pc = self.opcode & 0x0FFFu16;
+    }
+
+    pub fn skip_equal_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00) >> 8;
+        let byte = (self.opcode & 0x00FFu16) as u8;
+
+        if self.registers[vx as usize] == byte {
+            self.pc += 2;
+        }
     }
 } 

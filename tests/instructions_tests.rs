@@ -59,3 +59,16 @@ fn test_call() {
     assert_eq!(chip8.sp, 1);
     assert_eq!(chip8.stack[0], 0x500);
 }
+
+#[test]
+fn test_skip_equal_vx_should_skip() {
+    let mut chip8 = Chip8::default();
+
+    chip8.pc = 0x3000;
+    chip8.registers[0] = 0x55;
+    chip8.opcode = 0x3055;
+
+    chip8.skip_equal_vx_vy();
+
+    assert_eq!(chip8.pc, 0x3002, "Expected program counter to be 0x{:04X}, got 0x{:04X}", 0x3002, chip8.pc);
+}
