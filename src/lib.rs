@@ -110,7 +110,7 @@ impl Chip8 {
         self.pc = self.opcode & 0x0FFFu16;
     }
 
-    pub fn skip_equal_vx_vy(&mut self) {
+    pub fn skip_equal_vx_byte(&mut self) {
         let vx = (self.opcode & 0x0F00) >> 8;
         let byte = (self.opcode & 0x00FFu16) as u8;
 
@@ -119,7 +119,7 @@ impl Chip8 {
         }
     }
 
-    pub fn skip_not_equal_vx_vy(&mut self) {
+    pub fn skip_not_equal_vx_byte(&mut self) {
         let vx = (self.opcode & 0x0F00) >> 8;
         let byte = (self.opcode & 0x00FFu16) as u8;
 
