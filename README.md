@@ -16,7 +16,7 @@ A CHIP-8 emulator written in Rust (for learning purposes 😁).
 
 ```bash
 # Run the emulator
-cargo run
+cargo run <rom-filepath>
 
 # Run tests
 cargo test
