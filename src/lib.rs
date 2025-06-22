@@ -227,4 +227,10 @@ impl Chip8 {
 
         self.index = address;
     }
+
+    pub fn jump_v0(&mut self) {
+        let address = self.opcode & 0x0FFF;
+
+        self.pc = self.registers[0] as u16 + address;
+    }
 }

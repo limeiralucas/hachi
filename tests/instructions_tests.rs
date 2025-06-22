@@ -556,3 +556,20 @@ fn test_ld_index() {
 
     assert_hex_equal!("index", 0x4E2, chip8.index);
 }
+
+#[test]
+fn test_jump_v0() {
+    let mut chip8 = Chip8 {
+        opcode: 0xB4E2,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0] = 0x4;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.jump_v0();
+
+    assert_hex_equal!("program counter", 0x4E6, chip8.pc);
+}

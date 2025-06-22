@@ -61,7 +61,7 @@ cargo test instructions_tests
 - [x] **8xyE** - SHL Vx {, Vy} (Shift left)
 
 #### Jump & Random
-- [ ] **Bnnn** - JP V0, addr (Jump to addr + V0)
+- [x] **Bnnn** - JP V0, addr (Jump to addr + V0)
 - [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte) ⚠️ *Needs integration*
 
 #### Graphics
