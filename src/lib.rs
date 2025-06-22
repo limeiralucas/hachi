@@ -40,7 +40,7 @@ impl Default for Chip8 {
 
         Self {
             registers: [0; 16],
-            memory: memory,
+            memory,
             index: 0,
             pc: 0x200,
             stack: [0; 16],
@@ -69,7 +69,7 @@ impl Chip8 {
     fn rand_gen() -> u8 {
         let mut rng = rand::rng();
 
-        return rng.random_range(0..=255);
+        rng.random_range(0..=255)
     }
 
     pub fn clear_display(&mut self) {
