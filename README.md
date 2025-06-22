@@ -56,7 +56,7 @@ cargo test instructions_tests
 - [x] **8xy3** - XOR Vx, Vy (Vx = Vx XOR Vy)
 - [x] **8xy4** - ADD Vx, Vy (Add Vy to Vx, set VF = carry)
 - [x] **8xy5** - SUB Vx, Vy (Subtract Vy from Vx, set VF = NOT borrow)
-- [ ] **8xy6** - SHR Vx {, Vy} (Shift right)
+- [x] **8xy6** - SHR Vx {, Vy} (Shift right)
 - [ ] **8xy7** - SUBN Vx, Vy (Set Vx = Vy - Vx, set VF = NOT borrow)
 - [ ] **8xyE** - SHL Vx {, Vy} (Shift left)
 

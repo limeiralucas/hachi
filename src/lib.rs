@@ -177,4 +177,12 @@ impl Chip8 {
         self.registers[vx as usize] = result;
         self.registers[0xF] = !has_borrow as u8;
     }
+
+    pub fn shr_vx(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let lsb = self.registers[vx as usize] & 0x1u8;
+
+        self.registers[0xF] = lsb;
+        self.registers[vx as usize] >>= 1;
+    }
 }
