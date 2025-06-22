@@ -47,7 +47,7 @@ cargo test instructions_tests
 #### Load Instructions
 - [x] **6xkk** - LD Vx, byte (Set Vx = byte)
 - [x] **8xy0** - LD Vx, Vy (Set Vx = Vy)
-- [ ] **Annn** - LD I, addr (Set I = addr)
+- [x] **Annn** - LD I, addr (Set I = addr)
 
 #### Arithmetic & Logic
 - [x] **7xkk** - ADD Vx, byte (Add byte to Vx)

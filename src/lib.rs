@@ -221,4 +221,10 @@ impl Chip8 {
             self.pc += 2;
         }
     }
+
+    pub fn ld_index(&mut self) {
+        let address = self.opcode & 0x0FFF;
+
+        self.index = address;
+    }
 }

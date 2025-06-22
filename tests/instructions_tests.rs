@@ -543,3 +543,16 @@ fn test_skip_not_equal_vx_vy_should_not_skip() {
 
     assert_hex_equal!("program counter", 0x04, chip8.pc);
 }
+
+#[test]
+fn test_ld_index() {
+    let mut chip8 = Chip8 {
+        opcode: 0xA4E2,
+        registers: [0; 16],
+        ..Default::default()
+    };
+
+    chip8.ld_index();
+
+    assert_hex_equal!("index", 0x4E2, chip8.index);
+}
