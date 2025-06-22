@@ -176,7 +176,7 @@ fn test_add_vx_byte_overflow() {
 }
 
 #[test]
-fn test_or_vx() {
+fn test_or_vx_vy() {
     let mut chip8 = Chip8::default();
 
     chip8.opcode = 0x8AB1;
@@ -189,7 +189,7 @@ fn test_or_vx() {
 }
 
 #[test]
-fn test_and_or_vx() {
+fn test_and_vx_vy() {
     let mut chip8 = Chip8::default();
 
     chip8.opcode = 0x8AB2;
@@ -199,4 +199,17 @@ fn test_and_or_vx() {
     chip8.and_vx_vy();
 
     assert_eq!(chip8.registers[0xA], 0x10, "Expected register A to be 0x{:02X}, got 0x{:02X}", 0x10, chip8.registers[0xA]);
+}
+
+#[test]
+fn test_xor_vx_vy() {
+    let mut chip8 = Chip8::default();
+
+    chip8.opcode = 0x8AB3;
+    chip8.registers[0xA] = 0x11;
+    chip8.registers[0xB] = 0x10;
+
+    chip8.xor_vx_vy();
+
+    assert_eq!(chip8.registers[0xA], 0x01, "Expected register A to be 0x{:02X}, got 0x{:02X}", 0x01, chip8.registers[0xA]);
 }

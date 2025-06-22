@@ -51,7 +51,7 @@ cargo test instructions_tests
 - [x] **7xkk** - ADD Vx, byte (Add byte to Vx)
 - [x] **8xy1** - OR Vx, Vy (Vx = Vx OR Vy)
 - [x] **8xy2** - AND Vx, Vy (Vx = Vx AND Vy)
-- [ ] **8xy3** - XOR Vx, Vy (Vx = Vx XOR Vy)
+- [x] **8xy3** - XOR Vx, Vy (Vx = Vx XOR Vy)
 - [ ] **8xy4** - ADD Vx, Vy (Add Vy to Vx, set VF = carry)
 - [ ] **8xy5** - SUB Vx, Vy (Subtract Vy from Vx, set VF = NOT borrow)
 - [ ] **8xy6** - SHR Vx {, Vy} (Shift right)
