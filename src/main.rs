@@ -1,4 +1,4 @@
-use std::fs::File;
+use std::{env, fs::File};
 
 use hachi::Chip8;
 use log::error;
@@ -11,8 +11,15 @@ fn main() {
     }
     pretty_env_logger::init();
 
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 2 {
+        error!("Invalid arguments. Usage: hachi <rom-filepath>");
+        std::process::exit(1);
+    }
+    let rom_filepath = &args[1];
+
     let mut chip8 = Chip8::default();
-    let file = File::open("roms/space_invaders.ch8").unwrap_or_else(|e| {
+    let file = File::open(rom_filepath).unwrap_or_else(|e| {
         error!("Failed to open ROM file: {}", e);
         std::process::exit(1);
     });
