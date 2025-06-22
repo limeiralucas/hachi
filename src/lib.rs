@@ -160,6 +160,16 @@ impl Chip8 {
         let (result, has_overflow) = self.registers[vx as usize].overflowing_add(self.registers[vy as usize]);
 
         self.registers[vx as usize] = result;
-        self.registers[0xF] = has_overflow as u8
+        self.registers[0xF] = has_overflow as u8;
+    }
+
+    pub fn sub_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let vy = (self.opcode & 0x00F0u16) >> 4;
+
+        let (result, has_borrow) = self.registers[vx as usize].overflowing_sub(self.registers[vy as usize]);
+
+        self.registers[vx as usize] = result;
+        self.registers[0xF] = !has_borrow as u8;
     }
 } 

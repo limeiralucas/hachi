@@ -241,3 +241,31 @@ fn test_add_vx_vy_with_overflow() {
     assert_eq!(chip8.registers[0xA], 0x10, "Expected register A to be 0x{:02X}, got 0x{:02X}", 0x10, chip8.registers[0xA]);
     assert_eq!(chip8.registers[0xF], 0x1, "Expected register F to be 0x{:02X}, got 0x{:02X}", 0x1, chip8.registers[0xF]);
 }
+
+#[test]
+fn test_sub_vx_vy_with_overflow() {
+    let mut chip8 = Chip8::default();
+
+    chip8.opcode = 0x8AB5;
+    chip8.registers[0xA] = 0x00;
+    chip8.registers[0xB] = 0x01;
+
+    chip8.sub_vx_vy();
+
+    assert_eq!(chip8.registers[0xA], 0xFF, "Expected register A to be 0x{:02X}, got 0x{:02X}", 0x01, chip8.registers[0xA]);
+    assert_eq!(chip8.registers[0xF], 0, "Expected register F to be 0x{:02X}, got 0x{:02X}", 0, chip8.registers[0xF]);
+}
+
+#[test]
+fn test_sub_vx_vy_without_overflow() {
+    let mut chip8 = Chip8::default();
+
+    chip8.opcode = 0x8AB5;
+    chip8.registers[0xA] = 0x0A;
+    chip8.registers[0xB] = 0x01;
+
+    chip8.sub_vx_vy();
+
+    assert_eq!(chip8.registers[0xA], 0x09, "Expected register A to be 0x{:02X}, got 0x{:02X}", 0x09, chip8.registers[0xA]);
+    assert_eq!(chip8.registers[0xF], 0x1, "Expected register F to be 0x{:02X}, got 0x{:02X}", 0x1, chip8.registers[0xF]);
+}
