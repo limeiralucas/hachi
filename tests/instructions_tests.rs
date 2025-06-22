@@ -192,7 +192,7 @@ fn test_or_vx() {
 fn test_and_or_vx() {
     let mut chip8 = Chip8::default();
 
-    chip8.opcode = 0x8AB1;
+    chip8.opcode = 0x8AB2;
     chip8.registers[0xA] = 0x11;
     chip8.registers[0xB] = 0x10;
 
