@@ -1,9 +1,9 @@
 # Hachi - CHIP-8 Emulator
 
+[![CI](https://github.com/limeiralucas/hachi/workflows/CI/badge.svg)](https://github.com/limeiralucas/hachi/actions)
+
 <div align="center">
-  <img src="images/logo.svg" alt="Hachi CHIP-8 Emulator Logo" width="200"/>
-  
-  [![CI](https://github.com/limeiralucas/hachi/workflows/CI/badge.svg)](https://github.com/limeiralucas/hachi/actions)
+  <img src="images/logo.svg" alt="Hachi CHIP-8 Emulator Logo" width="300"/>
 </div>
 
 A CHIP-8 emulator written in Rust (for learning purposes 😁).
