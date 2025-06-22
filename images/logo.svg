@@ -1,9 +1,16 @@
 <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <!-- Soft drop shadow filter -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.3)" />
+    </filter>
+  </defs>
+
   <!-- Chip outline -->
-  <rect x="90" y="60" width="120" height="120" rx="16" stroke="black" stroke-width="8"/>
+  <rect x="90" y="60" width="120" height="120" rx="16" stroke="#333" stroke-width="8" filter="url(#softShadow)"/>
 
   <!-- Chip pins -->
-  <g stroke="black" stroke-width="8">
+  <g stroke="#333" stroke-width="8" filter="url(#softShadow)">
     <!-- Left side pins -->
     <line x1="82" y1="70" x2="60" y2="70"/>
     <line x1="82" y1="100" x2="60" y2="100"/>
@@ -29,10 +36,13 @@
     <line x1="190" y1="188" x2="190" y2="210"/>
   </g>
 
-  <!-- Japanese kanji for 8 (八), centered -->
-  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle" font-size="80" font-family="serif" fill="black">八</text>
+  <!-- Kanji 八 -->
+  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle"
+        font-size="80" font-family="serif" fill="#333" filter="url(#softShadow)">八</text>
 
-  <!-- Project Name -->
-  <text x="150" y="250" text-anchor="middle" font-size="32" font-family="sans-serif" fill="black" font-weight="bold">HACHI</text>
-  <text x="150" y="275" text-anchor="middle" font-size="16" font-family="sans-serif" fill="black">CHIP-8 EMULATOR</text>
+  <!-- Project name -->
+  <text x="150" y="250" text-anchor="middle" font-size="32"
+        font-family="sans-serif" fill="#333" font-weight="bold" filter="url(#softShadow)">HACHI</text>
+  <text x="150" y="275" text-anchor="middle" font-size="16"
+        font-family="sans-serif" fill="#333" filter="url(#softShadow)">CHIP-8 EMULATOR</text>
 </svg>
