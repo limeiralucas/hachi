@@ -416,7 +416,7 @@ fn test_shr_vx_without_remainder() {
 #[test]
 fn test_subn_vx_vy_with_overflow() {
     let mut chip8 = Chip8 {
-        opcode: 0x8AB5,
+        opcode: 0x8AB7,
         registers: {
             let mut registers = [0; 16];
             registers[0xA] = 0x0B;
@@ -435,7 +435,7 @@ fn test_subn_vx_vy_with_overflow() {
 #[test]
 fn test_subn_vx_vy_without_overflow() {
     let mut chip8 = Chip8 {
-        opcode: 0x8AB5,
+        opcode: 0x8AB7,
         registers: {
             let mut registers = [0; 16];
             registers[0xA] = 0x09;
