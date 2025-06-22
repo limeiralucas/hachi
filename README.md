@@ -1,7 +1,7 @@
 # Hachi - CHIP-8 Emulator
 
 <div align="center">
-  <img src="images/logo.svg" alt="Hachi CHIP-8 Emulator Logo" width="200"/>
+  <img src="images/logo.svg" alt="Hachi CHIP-8 Emulator Logo" width="300"/>
 </div>
 
 A CHIP-8 emulator written in Rust (for learning purposes 😁).
