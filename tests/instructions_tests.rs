@@ -214,6 +214,25 @@ fn test_load_vx_byte() {
 }
 
 #[test]
+fn test_load_vx_vy() {
+    let mut chip8 = Chip8 {
+        opcode: 0x8AB0,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0xA] = 0x05;
+            registers[0xB] = 0xF2;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.load_vx_vy();
+
+    assert_hex_equal!("register A", 0xF2, chip8.registers[0xA]);
+    assert_hex_equal!("register B", 0xF2, chip8.registers[0xB]);
+}
+
+#[test]
 fn test_add_vx_byte() {
     let mut chip8 = Chip8 {
         registers: {

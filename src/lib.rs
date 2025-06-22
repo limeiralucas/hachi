@@ -128,6 +128,13 @@ impl Chip8 {
         self.registers[vx as usize] = byte;
     }
 
+    pub fn load_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00) >> 8;
+        let vy = (self.opcode & 0x00F0) >> 4;
+
+        self.registers[vx as usize] = self.registers[vy as usize];
+    }
+
     pub fn add_vx_byte(&mut self) {
         let vx = (self.opcode & 0x0F00) >> 8;
         let byte = (self.opcode & 0x00FFu16) as u8;
