@@ -62,7 +62,7 @@ cargo test instructions_tests
 
 #### Jump & Random
 - [x] **Bnnn** - JP V0, addr (Jump to addr + V0)
-- [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte) ⚠️ *Needs integration*
+- [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte)
 
 #### Graphics
 - [ ] **Dxyn** - DRW Vx, Vy, nibble (Draw sprite)

@@ -522,7 +522,7 @@ fn test_skip_not_equal_vx_vy_should_skip() {
 
     chip8.skip_not_equal_vx_vy();
 
-    assert_hex_equal!("program counter", 0x06, chip8.pc);
+    assert_hex_equal!("program counter", 0x06, chip8.pc, 16);
 }
 
 #[test]
@@ -541,7 +541,7 @@ fn test_skip_not_equal_vx_vy_should_not_skip() {
 
     chip8.skip_not_equal_vx_vy();
 
-    assert_hex_equal!("program counter", 0x04, chip8.pc);
+    assert_hex_equal!("program counter", 0x04, chip8.pc, 16);
 }
 
 #[test]
@@ -571,5 +571,19 @@ fn test_jump_v0() {
 
     chip8.jump_v0();
 
-    assert_hex_equal!("program counter", 0x4E6, chip8.pc);
+    assert_hex_equal!("program counter", 0x4E6, chip8.pc, 16);
+}
+
+#[test]
+fn test_rnd_vx_byte() {
+    let mut chip8 = Chip8 {
+        opcode: 0xC5F0, // RND V5, 0xF0
+        rand_fn: Box::new(|| 0xAB),
+        ..Default::default()
+    };
+
+    chip8.rnd_vx_byte();
+
+    // 0xAB & 0xF0 = 0xA0
+    assert_hex_equal!("register 5", 0xA0, chip8.registers[0x5]);
 }

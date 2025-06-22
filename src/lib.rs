@@ -31,6 +31,7 @@ pub struct Chip8 {
     pub keypad: [bool; 16],
     pub video: [bool; 64 * 32],
     pub opcode: u16,
+    pub rand_fn: Box<dyn Fn() -> u8>,
 }
 
 impl Default for Chip8 {
@@ -48,6 +49,7 @@ impl Default for Chip8 {
             keypad: [false; 16],
             video: [false; 64 * 32],
             opcode: 0,
+            rand_fn: Box::new(Self::default_rand_gen),
         }
     }
 }
@@ -68,10 +70,9 @@ impl Chip8 {
         Ok(())
     }
 
-    #[allow(dead_code)]
-    fn rand_gen() -> u8 {
+    // Default random number generator
+    fn default_rand_gen() -> u8 {
         let mut rng = rand::rng();
-
         rng.random_range(0..=255)
     }
 
@@ -232,5 +233,12 @@ impl Chip8 {
         let address = self.opcode & 0x0FFF;
 
         self.pc = self.registers[0] as u16 + address;
+    }
+
+    pub fn rnd_vx_byte(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let byte = (self.opcode & 0x00FF) as u8;
+
+        self.registers[vx as usize] = (self.rand_fn)() & byte;
     }
 }
