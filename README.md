@@ -49,7 +49,7 @@ cargo test instructions_tests
 
 #### Arithmetic & Logic
 - [x] **7xkk** - ADD Vx, byte (Add byte to Vx)
-- [ ] **8xy1** - OR Vx, Vy (Vx = Vx OR Vy)
+- [x] **8xy1** - OR Vx, Vy (Vx = Vx OR Vy)
 - [ ] **8xy2** - AND Vx, Vy (Vx = Vx AND Vy)
 - [ ] **8xy3** - XOR Vx, Vy (Vx = Vx XOR Vy)
 - [ ] **8xy4** - ADD Vx, Vy (Add Vy to Vx, set VF = carry)
