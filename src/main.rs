@@ -1,4 +1,4 @@
-use std::{fs::File};
+use std::fs::File;
 
 use hachi::Chip8;
 use log::error;

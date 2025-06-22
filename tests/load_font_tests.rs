@@ -19,7 +19,7 @@ fn test_chip8_initializes_with_font_in_memory() {
         0xF0, 0x80, 0x80, 0x80, 0xF0, // C
         0xE0, 0x90, 0x90, 0x90, 0xE0, // D
         0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
-        0xF0, 0x80, 0xF0, 0x80, 0x80  // F
+        0xF0, 0x80, 0xF0, 0x80, 0x80, // F
     ];
 
     // Create a new Chip8 instance
@@ -27,26 +27,34 @@ fn test_chip8_initializes_with_font_in_memory() {
 
     // Font should be loaded starting at address 0x50
     let font_start_address = 0x50;
-    
+
     // Verify each byte of the font data
     for (i, &expected_byte) in expected_font.iter().enumerate() {
         let actual_byte = chip8.memory[font_start_address + i];
-        assert_eq!(actual_byte, expected_byte, 
-                  "Font byte at offset {} should be 0x{:02X}, but found 0x{:02X}", 
-                  i, expected_byte, actual_byte);
+        assert_eq!(
+            actual_byte, expected_byte,
+            "Font byte at offset {} should be 0x{:02X}, but found 0x{:02X}",
+            i, expected_byte, actual_byte
+        );
     }
-    
+
     // Verify font data doesn't overwrite other memory areas
     // Memory before font should be zero
     for addr in 0..font_start_address {
-        assert_eq!(chip8.memory[addr], 0, 
-                  "Memory before font (at 0x{:02X}) should be zero", addr);
+        assert_eq!(
+            chip8.memory[addr], 0,
+            "Memory before font (at 0x{:02X}) should be zero",
+            addr
+        );
     }
-    
+
     // Memory after font (until ROM area) should be zero
     let font_end_address = font_start_address + expected_font.len();
     for addr in font_end_address..0x200 {
-        assert_eq!(chip8.memory[addr], 0, 
-                  "Memory after font (at 0x{:02X}) should be zero", addr);
+        assert_eq!(
+            chip8.memory[addr], 0,
+            "Memory after font (at 0x{:02X}) should be zero",
+            addr
+        );
     }
 }
