@@ -505,3 +505,41 @@ fn test_shl_vx_without_overflow() {
     assert_hex_equal!("register A", 0x1E, chip8.registers[0xA]);
     assert_hex_equal!("register F", 0, chip8.registers[0xF]);
 }
+
+#[test]
+fn test_skip_not_equal_vx_vy_should_skip() {
+    let mut chip8 = Chip8 {
+        pc: 0x04,
+        opcode: 0x9AB0,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0xA] = 0x0F;
+            registers[0xB] = 0x0E;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.skip_not_equal_vx_vy();
+
+    assert_hex_equal!("program counter", 0x06, chip8.pc);
+}
+
+#[test]
+fn test_skip_not_equal_vx_vy_should_not_skip() {
+    let mut chip8 = Chip8 {
+        pc: 0x04,
+        opcode: 0x9AB0,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0xA] = 0x0F;
+            registers[0xB] = 0x0F;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.skip_not_equal_vx_vy();
+
+    assert_hex_equal!("program counter", 0x04, chip8.pc);
+}
