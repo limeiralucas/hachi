@@ -5,8 +5,8 @@
     </filter>
   </defs>
 
-  <rect x="90" y="60" width="120" height="120" rx="16" stroke="#00FF88" stroke-width="8" filter="url(#softShadow1)"/>
-  <g stroke="#00FF88" stroke-width="8" filter="url(#softShadow1)">
+  <rect x="90" y="60" width="120" height="120" rx="16" stroke="#FF6C00" stroke-width="8" filter="url(#softShadow1)"/>
+  <g stroke="#FF6C00" stroke-width="8" filter="url(#softShadow1)">
     <line x1="82" y1="70" x2="60" y2="70"/>
     <line x1="82" y1="100" x2="60" y2="100"/>
     <line x1="82" y1="130" x2="60" y2="130"/>
@@ -24,7 +24,7 @@
     <line x1="160" y1="188" x2="160" y2="210"/>
     <line x1="190" y1="188" x2="190" y2="210"/>
   </g>
-  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle" font-size="80" font-family="serif" fill="#00FF88" filter="url(#softShadow1)">八</text>
-  <text x="150" y="250" text-anchor="middle" font-size="32" font-family="sans-serif" fill="#00FF88" font-weight="bold" filter="url(#softShadow1)">HACHI</text>
-  <text x="150" y="275" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#00FF88" filter="url(#softShadow1)">CHIP-8 EMULATOR</text>
+  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle" font-size="80" font-family="serif" fill="#FF6C00" filter="url(#softShadow1)">八</text>
+  <text x="150" y="250" text-anchor="middle" font-size="32" font-family="sans-serif" fill="#FF6C00" font-weight="bold" filter="url(#softShadow1)">HACHI</text>
+  <text x="150" y="275" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#FF6C00" filter="url(#softShadow1)">CHIP-8 EMULATOR</text>
 </svg>
