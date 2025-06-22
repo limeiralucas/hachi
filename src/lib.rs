@@ -1,6 +1,6 @@
 use log::info;
 use rand::Rng;
-use std::io::{Error, ErrorKind, Read};
+use std::io::{BufReader, Error, ErrorKind, Read};
 
 const FONTSET: [u8; 80] = [
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -54,7 +54,9 @@ impl Default for Chip8 {
 
 impl Chip8 {
     pub fn load_rom_from_reader<R: Read>(&mut self, reader: R) -> Result<(), Error> {
-        for (index, byte) in reader.bytes().enumerate() {
+        let buf_reader = BufReader::new(reader);
+
+        for (index, byte) in buf_reader.bytes().enumerate() {
             let memory_address = self.pc as usize + index;
             if memory_address >= self.memory.len() {
                 return Err(Error::new(ErrorKind::FileTooLarge, "ROM too large"));
@@ -66,6 +68,7 @@ impl Chip8 {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn rand_gen() -> u8 {
         let mut rng = rand::rng();
 
