@@ -157,4 +157,11 @@ impl Chip8 {
 
         self.registers[vx as usize] |= self.registers[vy as usize];
     }
+
+    pub fn and_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let vy = (self.opcode & 0x00F0u16) >> 4;
+
+        self.registers[vx as usize] &= self.registers[vy as usize];
+    }
 } 
