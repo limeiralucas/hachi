@@ -469,3 +469,39 @@ fn test_subn_vx_vy_without_overflow() {
     assert_hex_equal!("register A", 0x01, chip8.registers[0xA]);
     assert_hex_equal!("register F", 1, chip8.registers[0xF]);
 }
+
+#[test]
+fn test_shl_vx_with_overflow() {
+    let mut chip8 = Chip8 {
+        opcode: 0x8ABE,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0xA] = 0xFF;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.shl_vx();
+
+    assert_hex_equal!("register A", 0xFE, chip8.registers[0xA]);
+    assert_hex_equal!("register F", 0x1, chip8.registers[0xF]);
+}
+
+#[test]
+fn test_shl_vx_without_overflow() {
+    let mut chip8 = Chip8 {
+        opcode: 0x8ABE,
+        registers: {
+            let mut registers = [0; 16];
+            registers[0xA] = 0x0F;
+            registers
+        },
+        ..Default::default()
+    };
+
+    chip8.shl_vx();
+
+    assert_hex_equal!("register A", 0x1E, chip8.registers[0xA]);
+    assert_hex_equal!("register F", 0, chip8.registers[0xF]);
+}

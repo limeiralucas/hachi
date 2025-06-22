@@ -58,7 +58,7 @@ cargo test instructions_tests
 - [x] **8xy5** - SUB Vx, Vy (Subtract Vy from Vx, set VF = NOT borrow)
 - [x] **8xy6** - SHR Vx {, Vy} (Shift right)
 - [x] **8xy7** - SUBN Vx, Vy (Set Vx = Vy - Vx, set VF = NOT borrow)
-- [ ] **8xyE** - SHL Vx {, Vy} (Shift left)
+- [x] **8xyE** - SHL Vx {, Vy} (Shift left)
 
 #### Jump & Random
 - [ ] **Bnnn** - JP V0, addr (Jump to addr + V0)

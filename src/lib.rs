@@ -203,4 +203,13 @@ impl Chip8 {
         self.registers[vx as usize] = result;
         self.registers[0xF] = !has_borrow as u8;
     }
+
+    pub fn shl_vx(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+
+        let (result, has_overflow) = self.registers[vx as usize].overflowing_mul(2);
+
+        self.registers[0xF] = has_overflow as u8;
+        self.registers[vx as usize] = result;
+    }
 }
