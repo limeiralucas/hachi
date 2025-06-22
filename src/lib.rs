@@ -185,4 +185,15 @@ impl Chip8 {
         self.registers[0xF] = lsb;
         self.registers[vx as usize] >>= 1;
     }
+
+    pub fn subn_vx_vy(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let vy = (self.opcode & 0x00F0u16) >> 4;
+
+        let (result, has_borrow) =
+            self.registers[vy as usize].overflowing_sub(self.registers[vx as usize]);
+
+        self.registers[vx as usize] = result;
+        self.registers[0xF] = !has_borrow as u8;
+    }
 }
