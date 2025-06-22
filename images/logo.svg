@@ -29,8 +29,8 @@
     <line x1="190" y1="188" x2="190" y2="210"/>
   </g>
 
-  <!-- Centered and adjusted number 8 -->
-  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle" font-size="80" font-family="monospace" fill="black">8</text>
+  <!-- Japanese kanji for 8 (八), centered -->
+  <text x="150" y="125" text-anchor="middle" dominant-baseline="middle" font-size="80" font-family="serif" fill="black">八</text>
 
   <!-- Project Name -->
   <text x="150" y="250" text-anchor="middle" font-size="32" font-family="sans-serif" fill="black" font-weight="bold">HACHI</text>
