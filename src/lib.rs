@@ -2,6 +2,9 @@ use log::info;
 use rand::Rng;
 use std::io::{BufReader, Error, ErrorKind, Read};
 
+const VIDEO_HEIGHT: u16 = 32;
+const VIDEO_WIDTH: u16 = 64;
+
 const FONTSET: [u8; 80] = [
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
     0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -240,5 +243,39 @@ impl Chip8 {
         let byte = (self.opcode & 0x00FF) as u8;
 
         self.registers[vx as usize] = (self.rand_fn)() & byte;
+    }
+
+    pub fn draw_vx_vy_n(&mut self) {
+        let vx = (self.opcode & 0x0F00u16) >> 8;
+        let vy = (self.opcode & 0x00F0u16) >> 4;
+        let height = self.opcode & 0x000Fu16;
+
+        let x_pos = self.registers[vx as usize] as u16;
+        let y_pos = self.registers[vy as usize] as u16;
+
+        self.registers[0xF] = 0;
+
+        for row in 0..height {
+            let sprite_byte = self.memory[(self.index + row) as usize];
+
+            for col in 0..8u16 {
+                let sprite_pixel = (sprite_byte & (0x80 >> col)) != 0;
+                
+                // Handle screen wrapping
+                let screen_x = (x_pos + col) % VIDEO_WIDTH;
+                let screen_y = (y_pos + row) % VIDEO_HEIGHT;
+                let buffer_pos = (screen_y * VIDEO_WIDTH + screen_x) as usize;
+                
+                let screen_pixel = self.video[buffer_pos];
+
+                // Check for collision (when sprite pixel is on and screen pixel is on)
+                if sprite_pixel && screen_pixel {
+                    self.registers[0xF] = 1;
+                }
+
+                // XOR the pixels
+                self.video[buffer_pos] = screen_pixel ^ sprite_pixel;
+            }
+        }
     }
 }

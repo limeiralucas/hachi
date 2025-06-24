@@ -65,7 +65,7 @@ cargo test instructions_tests
 - [x] **Cxkk** - RND Vx, byte (Set Vx = random & byte)
 
 #### Graphics
-- [ ] **Dxyn** - DRW Vx, Vy, nibble (Draw sprite)
+- [x] **Dxyn** - DRW Vx, Vy, nibble (Draw sprite) ⚠️ Missing tests
 
 #### Input
 - [ ] **Ex9E** - SKP Vx (Skip if key Vx is pressed)
